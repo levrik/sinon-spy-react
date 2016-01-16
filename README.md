@@ -1,6 +1,10 @@
 # sinon-spy-react
 Spy on React.js classes with Sinon
 
+```
+npm install sinon-react-spy --save-dev
+```
+
 ## Examples
 
 ### Without JSX
