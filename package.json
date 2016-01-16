@@ -2,7 +2,7 @@
   "name": "sinon-spy-react",
   "version": "1.0.1",
   "description": "Spy on React.js classes with Sinon",
-  "main": "sinon-react-spy.js",
+  "main": "sinon-spy-react.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/DerNivel/sinon-spy-react.git"
