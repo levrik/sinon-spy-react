@@ -1,7 +1,7 @@
 # sinon-spy-react
 Spy on React.js classes with Sinon
 
-## Example
+## Examples
 
 ### Without JSX
 
