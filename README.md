@@ -1,4 +1,5 @@
 # sinon-spy-react
+<<<<<<< HEAD
 Spy on React.js classes with Sinon
 
 ## Example
@@ -15,3 +16,6 @@ it('calls componentDidMount after mounting', function () {
     assert(spy.called);
 });
 ```
+=======
+Spy on React classes with sinon
+>>>>>>> dcfebadac83cbdab1af68618aa92336267483aa1
