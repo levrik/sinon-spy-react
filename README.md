@@ -3,6 +3,8 @@ Spy on React.js classes with Sinon
 
 ## Example
 
+### Without JSX
+
 ```javascript
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
