@@ -1,0 +1,26 @@
+{
+  "name": "sinon-spy-react",
+  "version": "1.0.0",
+  "description": "Spy on React.js classes with Sinon",
+  "main": "sinon-react-spy.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DerNivel/sinon-spy-react.git"
+  },
+  "author": "Levin Rickert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DerNivel/sinon-spy-react/issues"
+  },
+  "homepage": "https://github.com/DerNivel/sinon-spy-react",
+  "devDependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "sinon": "^1.17.2"
+  },
+  "peerDependencies": {
+    "react": ">=0.14.0",
+    "react-dom": ">=0.14.0",
+    "sinon": "^1.0.0"
+  }
+}
