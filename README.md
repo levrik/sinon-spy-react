@@ -2,7 +2,7 @@
 Spy on React.js classes with Sinon
 
 ```
-npm install sinon-react-spy --save-dev
+npm install sinon-spy-react --save-dev
 ```
 
 ## Examples
