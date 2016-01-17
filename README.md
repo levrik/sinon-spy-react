@@ -1,4 +1,5 @@
-# sinon-spy-react
+sinon-spy-react [![NPM Version](https://img.shields.io/npm/v/sinon-spy-react.svg?style=flat)](https://npmjs.org/package/sinon-spy-react)
+==============
 Spy on React.js classes with Sinon
 
 ## Installation
