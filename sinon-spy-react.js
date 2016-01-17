@@ -13,7 +13,7 @@ function spyOnReactClass(reactClass, methodName) {
 function reactClassPrototype(reactClass) {
     var ctor = reactClass.prototype && reactClass.prototype.constructor;
     if (typeof ctor === 'undefinied')
-        throw 'A component constructor could not be found for this class. Are you sure you passed in a React component?';
+        throw new Error('A component constructor could not be found for this class. Are you sure you passed in a React component?');
 
     return ctor.prototype;
 }
