@@ -30,11 +30,11 @@ it('calls componentDidMount after mounting', function () {
 ### With ES6 and JSX
 
 ```javascript
-const React = require('react');
-const TestUtils = require('react-addons-test-utils');
-const spyOnReactClass = require('sinon-spy-react');
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import spyOnReactClass from 'sinon-spy-react';
 
-const Component = require('./Component'); // some React component to test
+import Component from './Component'; // some React component to test
 
 it('calls componentDidMount after mounting', () => {
     const spy = spyOnReactClass(Component, 'componentDidMount'); // returns a Sinon spy
