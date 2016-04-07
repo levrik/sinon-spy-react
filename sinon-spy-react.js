@@ -6,7 +6,12 @@ function spyOnReactClass(reactClass, methodName) {
     var classProto = reactClassPrototype(reactClass);
     var spy = sinon.spy();
 
-    if (classProto.__reactAutoBindMap) classProto.__reactAutoBindMap[methodName] = spy;
+    if (classProto.__reactAutoBindMap) { // React 0.14.x
+      classProto.__reactAutoBindMap[methodName] = spy;
+    } else if (classProto.__reactAutoBindPairs) { // React 15.x
+      classProto.__reactAutoBindPairs.push(methodName, spy);
+    }
+
     return spy;
 }
 
