@@ -1,3 +1,8 @@
+## 1.1.0
+
+* [`50f5e40`](https://github.com/DerNivel/sinon-spy-react/commit/50f5e40a47e3b3355365174e0b042055d1757e9f)
+  Added compatibility with React 15
+
 ## 1.0.4
 
 * [`049783c`](https://github.com/DerNivel/sinon-spy-react/commit/049783c48ec3de8db94c8ba1d1cb0e078fe74521)
