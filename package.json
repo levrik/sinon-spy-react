@@ -14,8 +14,8 @@
   },
   "homepage": "https://github.com/DerNivel/sinon-spy-react",
   "devDependencies": {
-    "react": "^15.0.0-rc.2",
-    "react-dom": "^15.0.0-rc.2",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
     "sinon": "^1.17.2"
   },
   "peerDependencies": {
