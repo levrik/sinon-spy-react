@@ -10,8 +10,6 @@ npm install sinon-spy-react --save-dev
 
 ## Examples
 
-### With ES6 and JSX
-
 ```javascript
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
@@ -27,7 +25,7 @@ it('calls componentDidMount after mounting', () => {
 });
 ```
 
-### Without JSX
+### ES5
 
 ```javascript
 var React = require('react');
