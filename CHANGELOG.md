@@ -1,3 +1,10 @@
+## 1.1.1
+
+* [`1263887`](https://github.com/DerNivel/sinon-spy-react/commit/1263887bcd8b585574c2bb3a556e3ef648dd7eb2)
+  [#4](https://github.com/DerNivel/sinon-spy-react/pull/4)
+  Corrected check for constructor existence
+  ([@MasterXen](https://github.com/MasterXen))
+
 ## 1.1.0
 
 * [`50f5e40`](https://github.com/DerNivel/sinon-spy-react/commit/50f5e40a47e3b3355365174e0b042055d1757e9f)
