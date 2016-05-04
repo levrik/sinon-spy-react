@@ -21,31 +21,30 @@ function spyOnComponentMethod(reactClass, methodName) {
     return spy;
 }
 
-function mockComponentMethod(reactClass, methodName) {
+function stubComponentMethod(reactClass, methodName) {
     var classProto = reactClassPrototype(reactClass);
-    var mock;
+    var stub;
     var on;
     var idx;
     var i;
 
     if (classProto.__reactAutoBindMap) { // React 0.14.x
-      mock = classProto.__reactAutoBindMap[methodName] = sinon.mock(classProto.__reactAutoBindMap, methodName);
+      stub = classProto.__reactAutoBindMap[methodName] = sinon.stub(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
       idx = classProto.__reactAutoBindPairs.indexOf(methodName);
       if(idx !== -1){
-          mock = classProto.__reactAutoBindPairs[idx+1] = sinon.mock(classProto.__reactAutoBindPairs, idx+1);
+          stub = sinon.stub(classProto.__reactAutoBindPairs, idx+1);
       } else {
-          mock = sinon.mock();
+          stub = sinon.stub();
           i = classProto.__reactAutoBindPairs.push( methodName );
-          classProto.__reactAutoBindPairs.push( methodName );
-          classProto.__reactAutoBindPairs.push( mock );
-          
-          mock.restore = function(){
-             classProto.__reactAutoBindPairs.splice(i-1, 2);   
+          classProto.__reactAutoBindPairs.push( stub );
+
+          stub.restore = function(){
+             classProto.__reactAutoBindPairs.splice(i-1, 2);
           }
       }
     }
-    return mock;
+    return stub;
 }
 
 function reactClassPrototype(reactClass) {
@@ -57,4 +56,4 @@ function reactClassPrototype(reactClass) {
 }
 
 module.exports.spyOnComponentMethod = spyOnComponentMethod;
-module.exports.mockComponentMethod = mockComponentMethod;
+module.exports.stubComponentMethod = stubComponentMethod;
