@@ -8,8 +8,12 @@ function spyOnComponentMethod(reactClass, methodName) {
     var on;
     var idx;
 
-    if (classProto.__reactAutoBindMap) { // React 0.14.x
-      spy = classProto.__reactAutoBindMap[methodName] = sinon.spy(classProto.__reactAutoBindMap[methodName]);
+    if (classProto.__reactAutoBindMap) { // React 0.14.x1
+      if(typeof classProto.__reactAutoBindMap[methodName] !== 'undefined' ){
+        spy = classProto.__reactAutoBindMap[methodName] = sinon.spy(classProto.__reactAutoBindMap[methodName]);
+      } else {
+        throw new Error('Cannot spy on a function that does not exist');
+      }
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
       idx = classProto.__reactAutoBindPairs.indexOf(methodName);
       if(idx !== -1){
