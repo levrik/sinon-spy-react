@@ -5,14 +5,14 @@
   "main": "sinon-spy-react.js",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/DerNivel/sinon-spy-react.git"
+    "url": "git+ssh://git@github.com/levrik/sinon-spy-react.git"
   },
   "author": "Levin Rickert",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DerNivel/sinon-spy-react/issues"
+    "url": "https://github.com/levrik/sinon-spy-react/issues"
   },
-  "homepage": "https://github.com/DerNivel/sinon-spy-react",
+  "homepage": "https://github.com/levrik/sinon-spy-react",
   "devDependencies": {
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
