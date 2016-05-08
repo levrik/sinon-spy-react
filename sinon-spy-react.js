@@ -39,7 +39,6 @@ function stubComponentMethod(reactClass, methodName) {
 
       return sinon.stub(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
-      if (methodName === 'getDefaultProps') return sinon.stub(classProto.constructor, methodName);
       if (methodIsLifecycle) {
         if (classProto[methodName] === null) return classProto[methodName] = sinon.stub();
         else return sinon.stub(classProto, methodName);
@@ -62,9 +61,7 @@ function reactClassPrototype(reactClass) {
 
 function isLifecycleMethod(methodName) {
   switch (methodName) {
-    case 'getDefaultProps':
     case 'getInitialState':
-    case 'getChildContext':
     case 'componentWillMount':
     case 'componentDidMount':
     case 'componentWillReceiveProps':
