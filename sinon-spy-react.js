@@ -15,7 +15,10 @@ function spyOnComponentMethod(reactClass, methodName) {
 
       return sinon.spy(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
-      if (isSpyableLifecycleMethod(methodName)) return sinon.spy(classProto, methodName);
+      if (isSpyableLifecycleMethod(methodName)) {
+        if (classProto[methodName] === null) return classProto[methodName] = sinon.spy();
+        else return sinon.spy(classProto, methodName);
+      }
 
       var idx = classProto.__reactAutoBindPairs.indexOf(methodName);
       if (idx === -1) throw new Error('Cannot spy on a method that does not exist.');
@@ -37,7 +40,10 @@ function stubComponentMethod(reactClass, methodName) {
       return sinon.stub(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
       if (methodName === 'getDefaultProps') return sinon.stub(classProto.constructor, methodName);
-      if (methodIsLifecycle) return sinon.stub(classProto, methodName);
+      if (methodIsLifecycle) {
+        if (classProto[methodName] === null) return classProto[methodName] = sinon.stub();
+        else return sinon.stub(classProto, methodName);
+      }
 
       var idx = classProto.__reactAutoBindPairs.indexOf(methodName);
       if (idx === -1) throw new Error('Cannot stub a method that does not exist.');
