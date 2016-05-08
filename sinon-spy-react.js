@@ -4,51 +4,38 @@ var sinon = require('sinon');
 
 function spyOnComponentMethod(reactClass, methodName) {
     var classProto = reactClassPrototype(reactClass);
-    var spy;
-    var on;
-    var idx;
+    if (!isSpyableLifecycleMethod(methodName) && isLifecycleMethod(methodName)) throw new Error('Cannot spy on lifecycle method ' + methodName + '. Please use a stub instead.');
 
-    if (classProto.__reactAutoBindMap) { // React 0.14.x1
-      if(typeof classProto.__reactAutoBindMap[methodName] !== 'undefined' ){
-        spy = classProto.__reactAutoBindMap[methodName] = sinon.spy(classProto.__reactAutoBindMap[methodName]);
-      } else {
-        throw new Error('Cannot spy on a function that does not exist');
-      }
+    if (classProto.__reactAutoBindMap) { // React 0.14.x
+      if (typeof classProto.__reactAutoBindMap[methodName] === 'undefined') throw new Error('Cannot spy on a method that does not exist.');
+
+      return sinon.spy(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
-      idx = classProto.__reactAutoBindPairs.indexOf(methodName);
-      if(idx !== -1){
-          spy = classProto.__reactAutoBindPairs[idx+1] = sinon.spy(classProto.__reactAutoBindPairs[idx+1]);
-      } else {
-          throw new Error('Cannot spy on a function that does not exist');
-      }
+      if (isSpyableLifecycleMethod(methodName)) return sinon.spy(classProto, methodName);
+
+      var idx = classProto.__reactAutoBindPairs.indexOf(methodName);
+      if (idx === -1) throw new Error('Cannot spy on a method that does not exist.');
+
+      return sinon.spy(classProto.__reactAutoBindPairs, idx + 1);
     }
-    return spy;
 }
 
 function stubComponentMethod(reactClass, methodName) {
     var classProto = reactClassPrototype(reactClass);
-    var stub;
-    var on;
-    var idx;
-    var i;
 
     if (classProto.__reactAutoBindMap) { // React 0.14.x
-      stub = classProto.__reactAutoBindMap[methodName] = sinon.stub(classProto.__reactAutoBindMap, methodName);
-    } else if (classProto.__reactAutoBindPairs) { // React 15.x
-      idx = classProto.__reactAutoBindPairs.indexOf(methodName);
-      if(idx !== -1){
-          stub = sinon.stub(classProto.__reactAutoBindPairs, idx+1);
-      } else {
-          stub = sinon.stub();
-          i = classProto.__reactAutoBindPairs.push( methodName );
-          classProto.__reactAutoBindPairs.push( stub );
+      if (typeof classProto.__reactAutoBindMap[methodName] === 'undefined') throw new Error('Cannot stub a method that does not exist.');
 
-          stub.restore = function(){
-             classProto.__reactAutoBindPairs.splice(i-1, 2);
-          }
-      }
+      return sinon.stub(classProto.__reactAutoBindMap, methodName);
+    } else if (classProto.__reactAutoBindPairs) { // React 15.x
+      if (methodName === 'getDefaultProps') return sinon.stub(classProto.constructor, methodName);
+      if (isLifecycleMethod(methodName)) return sinon.stub(classProto, methodName);
+
+      var idx = classProto.__reactAutoBindPairs.indexOf(methodName);
+      if (idx === -1) throw new Error('Cannot stub a method that does not exist.');
+
+      return sinon.stub(classProto.__reactAutoBindPairs, idx + 1);
     }
-    return stub;
 }
 
 function reactClassPrototype(reactClass) {
@@ -59,5 +46,38 @@ function reactClassPrototype(reactClass) {
     return ctor.prototype;
 }
 
-module.exports.spyOnComponentMethod = spyOnComponentMethod;
-module.exports.stubComponentMethod = stubComponentMethod;
+function isLifecycleMethod(methodName) {
+  switch (methodName) {
+    case 'getDefaultProps':
+    case 'getInitialState':
+    case 'getChildContext':
+    case 'componentWillMount':
+    case 'componentDidMount':
+    case 'componentWillReceiveProps':
+    case 'componentWillUpdate':
+    case 'componentDidUpdate':
+    case 'componentWillUnmount':
+    case 'shouldComponentUpdate':
+    case 'render':
+      return true;
+    default:
+      return false;
+  }
+}
+
+function isSpyableLifecycleMethod(methodName) {
+  switch (methodName) {
+    case 'componentWillMount':
+    case 'componentDidMount':
+    case 'componentWillReceiveProps':
+    case 'componentWillUpdate':
+    case 'componentDidUpdate':
+    case 'componentWillUnmount':
+      return true;
+    default:
+      return false;
+  }
+}
+
+exports.spyOnComponentMethod = spyOnComponentMethod;
+exports.stubComponentMethod = stubComponentMethod;
