@@ -7,7 +7,7 @@ First of all, there is a small change in the API. The module does not export the
 Secondly the behavior of the `spyOnComponentMethod` method has changed a bit. Now it returns a spy with the original function wrapped. That means that the original function doesn't get overwritten anymore. To "restore" the old behavior use stubs with the `stubComponentMethod` method instead.
 
 * [`6ac114d`](https://github.com/levrik/sinon-spy-react/commit/6ac114df5055aa0700a86fab62bf3a0eee051fa8)
-[`744f8d5`](https://github.com/levrik/sinon-spy-react/commit/744f8d539a69e31e8a52d561643899effdf91ad3)
+  [`744f8d5`](https://github.com/levrik/sinon-spy-react/commit/744f8d539a69e31e8a52d561643899effdf91ad3)
   [#6](https://github.com/levrik/sinon-spy-react/pull/6)
   Added support for stubs (and refactored a bit the spy code)
   ([@apires](https://github.com/apires) and [me](https://github.com/levrik))
