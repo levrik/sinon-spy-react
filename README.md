@@ -14,13 +14,13 @@ npm install sinon-spy-react --save-dev
 
 This method creates and returns a spy on the given React component class and method. The original function gets wrapped into the spy. That means the original code gets still executed. To prevent this or execute custom code use a stub.
 
-**Note**: It isn't possible to create a spy on a method which does not exists but with the exception of lifecycle methods (e.g. `componentDidMount`). `getDefaultProps` and `getChildContext` are not supported. For `getInitialState` use a stub which can overwrite the original initial state with a custom one.
+**Note**: It isn't possible to create a spy on a method which does not exists but with the exception of lifecycle methods (e.g. `componentDidMount`). `getDefaultProps` and `getChildContext` are not supported. For `getInitialState` use a stub which for example can be used to return a custom initial state for the test.
 
 ### `stubComponentMethod(reactClass, methodName)`
 
-This method stubs a method on a given React component class and returns the stub.
+This method stubs the method on the given React component class and returns the stub.
 
-**Note**: The `restore` method of the stub only restores the function on the React class definition, not on the instance. Create a new instance of the component after calling `restore` to get the original behavior.
+**Note**: The `restore` method of the stub only restores the function on the React class definition, not on the instance. Create a new instance of the component after calling `restore` to get an instance with the restored method.
 
 ## Examples
 
