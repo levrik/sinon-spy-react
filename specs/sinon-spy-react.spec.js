@@ -62,7 +62,7 @@ describe('spyOnComponentMethod', function() {
       render: noop
     });
 
-    assert.throws(sinonReact.spyOnComponentMethod.bind(null, TestComponent, 'shouldComponentUpdate'), /Cannot spy on lifecycle method shouldComponentUpdate. Please use a stub instead./);
+    assert.throws(sinonReact.spyOnComponentMethod.bind(null, TestComponent, 'shouldComponentUpdate'), /Cannot spy on lifecycle method shouldComponentUpdate\. Please use a stub instead\./);
   });
 
   it('throws an error if a custom method is passed which does not exists', function() {
@@ -70,7 +70,7 @@ describe('spyOnComponentMethod', function() {
       render: noop
     });
 
-    assert.throws(sinonReact.spyOnComponentMethod.bind(null, TestComponent, 'customTestMethod'), /Cannot spy on a method that does not exist./);
+    assert.throws(sinonReact.spyOnComponentMethod.bind(null, TestComponent, 'customTestMethod'), /Cannot spy on a method that does not exist\./);
   });
 });
 
@@ -124,6 +124,6 @@ describe('stubComponentMethod', function() {
       render: noop
     });
 
-    assert.throws(sinonReact.stubComponentMethod.bind(null, TestComponent, 'customTestMethod'), /Cannot stub a method that does not exist./);
+    assert.throws(sinonReact.stubComponentMethod.bind(null, TestComponent, 'customTestMethod'), /Cannot stub a method that does not exist\./);
   });
 });
