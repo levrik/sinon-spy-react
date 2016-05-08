@@ -4,10 +4,14 @@ var sinon = require('sinon');
 
 function spyOnComponentMethod(reactClass, methodName) {
     var classProto = reactClassPrototype(reactClass);
-    if (!isSpyableLifecycleMethod(methodName) && isLifecycleMethod(methodName)) throw new Error('Cannot spy on lifecycle method ' + methodName + '. Please use a stub instead.');
+    var methodIsLifecycle = isLifecycleMethod(methodName);
+    if (!isSpyableLifecycleMethod(methodName) && methodIsLifecycle) throw new Error('Cannot spy on lifecycle method ' + methodName + '. Please use a stub instead.');
 
     if (classProto.__reactAutoBindMap) { // React 0.14.x
-      if (typeof classProto.__reactAutoBindMap[methodName] === 'undefined') throw new Error('Cannot spy on a method that does not exist.');
+      if (typeof classProto.__reactAutoBindMap[methodName] === 'undefined') {
+        if (methodIsLifecycle) return classProto.__reactAutoBindMap[methodName] = sinon.spy();
+        else throw new Error('Cannot spy on a method that does not exist.');
+      }
 
       return sinon.spy(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
@@ -22,14 +26,18 @@ function spyOnComponentMethod(reactClass, methodName) {
 
 function stubComponentMethod(reactClass, methodName) {
     var classProto = reactClassPrototype(reactClass);
+    var methodIsLifecycle = isLifecycleMethod(methodName);
 
     if (classProto.__reactAutoBindMap) { // React 0.14.x
-      if (typeof classProto.__reactAutoBindMap[methodName] === 'undefined') throw new Error('Cannot stub a method that does not exist.');
+      if (typeof classProto.__reactAutoBindMap[methodName] === 'undefined') {
+        if (methodIsLifecycle) return classProto.__reactAutoBindMap[methodName] = sinon.stub();
+        else throw new Error('Cannot stub a method that does not exist.');
+      }
 
       return sinon.stub(classProto.__reactAutoBindMap, methodName);
     } else if (classProto.__reactAutoBindPairs) { // React 15.x
       if (methodName === 'getDefaultProps') return sinon.stub(classProto.constructor, methodName);
-      if (isLifecycleMethod(methodName)) return sinon.stub(classProto, methodName);
+      if (methodIsLifecycle) return sinon.stub(classProto, methodName);
 
       var idx = classProto.__reactAutoBindPairs.indexOf(methodName);
       if (idx === -1) throw new Error('Cannot stub a method that does not exist.');
