@@ -9,7 +9,7 @@ Secondly the behavior of the `spyOnComponentMethod` method has changed a bit. No
 * [`6ac114d`](https://github.com/levrik/sinon-spy-react/commit/6ac114df5055aa0700a86fab62bf3a0eee051fa8)
   [`744f8d5`](https://github.com/levrik/sinon-spy-react/commit/744f8d539a69e31e8a52d561643899effdf91ad3)
   [#6](https://github.com/levrik/sinon-spy-react/pull/6)
-  Added support for stubs (and refactored a bit the spy code)
+  Added basic support for stubs (and refactored a bit the spies code)
   ([@apires](https://github.com/apires) and [me](https://github.com/levrik))
 * [`6fd262d`](https://github.com/levrik/sinon-spy-react/commit/6fd262df5e438ffd67dadf90fcb381c22ba87ff9) Added tests
 
