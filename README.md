@@ -39,7 +39,7 @@ it('calls componentDidMount after mounting', () => {
     assert(spy.calledOnce);
 });
 
-it('does something with specified initial state', () => {
+it('does something with specific initial state', () => {
     const stub = stubComponentMethod(Component, 'getInitialState').returns({
       foo: 'bar' // the stubbed/mocked initial state
     });
