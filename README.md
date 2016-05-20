@@ -8,6 +8,8 @@ Spy on React.js classes with Sinon
 npm install sinon-spy-react --save-dev
 ```
 
+> For the old 1.x documentation, look [here](https://github.com/levrik/sinon-spy-react/blob/1.1.2/README.md).
+
 ## API
 
 ### `spyOnComponentMethod(reactClass, methodName)`
