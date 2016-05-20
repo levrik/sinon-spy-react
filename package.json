@@ -1,6 +1,6 @@
 {
   "name": "sinon-spy-react",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Spy on React.js classes with Sinon",
   "main": "sinon-spy-react.js",
   "repository": {
@@ -13,9 +13,18 @@
     "url": "https://github.com/levrik/sinon-spy-react/issues"
   },
   "homepage": "https://github.com/levrik/sinon-spy-react",
+  "scripts": {
+    "test": "npm run restore-react-15 && npm run __test && npm run install-react-14 && npm run __test",
+    "__test": "mocha specs/**/*.spec.js",
+    "restore-react-15": "npm install",
+    "install-react-14": "npm install react@0.14.8 react-dom@0.14.8 react-addons-test-utils@0.14.8"
+  },
   "devDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
+    "jsdom": "^9.0.0",
+    "mocha": "^2.4.5",
+    "react": "^15.0.2",
+    "react-addons-test-utils": "^15.0.2",
+    "react-dom": "^15.0.2",
     "sinon": "^1.17.2"
   },
   "peerDependencies": {

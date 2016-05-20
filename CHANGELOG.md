@@ -1,3 +1,18 @@
+## 2.0.0
+
+#### ATTENTION: BREAKING CHANGES
+
+First of all, there is a small change in the API. The module does not export the `spyOnReactClass` method directly anymore. Instead it exports two functions now: `spyOnComponentMethod` (the old `spyOnReactClass`) and `stubComponentMethod`.
+
+Secondly the behavior of the `spyOnComponentMethod` method has changed a bit. Now it returns a spy with the original function wrapped. That means that the original function doesn't get overwritten anymore. To "restore" the old behavior use stubs with the `stubComponentMethod` method instead.
+
+* [`6ac114d`](https://github.com/levrik/sinon-spy-react/commit/6ac114df5055aa0700a86fab62bf3a0eee051fa8)
+  [`744f8d5`](https://github.com/levrik/sinon-spy-react/commit/744f8d539a69e31e8a52d561643899effdf91ad3)
+  [#6](https://github.com/levrik/sinon-spy-react/pull/6)
+  Added basic support for stubs (and refactored a bit the spies code)
+  ([@apires](https://github.com/apires) and [me](https://github.com/levrik))
+* [`6fd262d`](https://github.com/levrik/sinon-spy-react/commit/6fd262df5e438ffd67dadf90fcb381c22ba87ff9) Added tests
+
 ## 1.1.1
 
 * [`1263887`](https://github.com/levrik/sinon-spy-react/commit/1263887bcd8b585574c2bb3a556e3ef648dd7eb2)
