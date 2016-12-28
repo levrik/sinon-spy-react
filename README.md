@@ -1,6 +1,32 @@
-sinon-spy-react [![npm package](https://img.shields.io/npm/v/sinon-spy-react.svg?style=flat-square)](https://npmjs.org/package/sinon-spy-react)
+sinon-spy-react [![npm package](https://img.shields.io/npm/v/sinon-spy-react.svg?style=flat-square)](https://www.npmjs.com/package/sinon-spy-react)
 ==============
 Spy on React.js classes with Sinon
+
+## DEPRECATED
+
+Please use classes instead of the `React.createClass` API since it's deprecated. Spying and stubbing of class methods is possible without this library.
+
+#### How do I migrate my tests after conversion to classes?
+
+```javascript
+// Before
+const spy = spyOnComponentMethod(Component, 'componentDidMount');
+
+// After
+const spy = sinon.spy(Component.prototype, 'componentDidMount');
+```
+
+```javascript
+// Before
+const stub = stubComponentMethod(Component, 'getInitialState').returns({
+  foo: 'bar'
+});
+
+// After
+const stub = sinon.stub(Component.prototype, 'getInitialState').returns({
+  foo: 'bar'
+});
+```
 
 ## Installation
 
