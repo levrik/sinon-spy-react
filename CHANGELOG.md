@@ -1,3 +1,7 @@
+## 2.0.1
+
+* [`e2ab5fb`](https://github.com/levrik/sinon-spy-react/commit/e2ab5fb486269a847daa1e4955f8cdd7c7dc06e9) Deprecated this module
+
 ## 2.0.0
 
 #### ATTENTION: BREAKING CHANGES
